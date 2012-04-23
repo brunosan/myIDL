@@ -1,0 +1,43 @@
+ERROR HANDLING
+
+; Establish error handler. When errors occur, the index of the
+; error is returned in the variable Error_status:
+CATCH, Error_status
+;This statement begins the error handler:
+IF Error_status NE 0 THEN BEGIN
+PRINT, 'Error index: ', Error_status
+PRINT, 'Error message: ', !ERROR_STATE.MSG
+; Handle the error by extending A:
+A=FLTARR(12)
+CATCH, /CANCEL
+ENDIF
+; Cause an error:
+A[11]=12
+; Even though an error occurs in the line above, program
+; execution continues to this point because the event handler
+; extended the definition of A so that the statement can be
+; re-executed.
+HELP, A
+
+
+
+
+contador con borrado:
+sl = string ( byte ( [27, 91, 68, 27, 91, 68, 27, 91, 68] ) )
+writeu, -1, sl+string(i+1, format=" ( i3 ) ")
+
+usar un keyword
+
+pro bla,a,b,KEY=key
+
+y luego:
+
+IF keyword_set(cubic) THEN BEGIN
+    ord = 2
+        cb = -.5
+        ENDIF ELSE BEGIN
+            ord = 1
+                cb = 0
+                ENDELSE
+
+
