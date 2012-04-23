@@ -1,0 +1,143 @@
+flat_filtd
+    |
+    +--flatavg2
+    |   |
+    |   +--avgscans_i
+    |   |   |
+    |   |   +--read_op_hdr
+    |   |   |   |
+    |   |   |   +--get_optype
+    |   |   |
+    |   |   +--readscan
+    |   |   |   |
+    |   |   |   +--read_op_hdr
+    |   |   |   |   |
+    |   |   |   |   +--get_optype
+    |   |   |   |
+    |   |   |   +--read_sc_data
+    |   |   |   |   |
+    |   |   |   |   +--i2float
+    |   |   |   |
+    |   |   |   +--read_sc_hdr
+    |   |   |   |
+    |   |   |   +--set_iquv
+    |   |   |   |
+    |   |   |   +--skip_scan
+    |   |   |
+    |   |   +--set_iquv
+    |   |
+    |   +--in_set
+    |
+    +--genfiltd
+    |   |
+    |   +--avgprof
+    |   |   |
+    |   |   +--read_op_hdr
+    |   |   |   |
+    |   |   |   +--get_optype
+    |   |   |
+    |   |   +--readscan
+    |   |   |   |
+    |   |   |   +--read_op_hdr
+    |   |   |   |   |
+    |   |   |   |   +--get_optype
+    |   |   |   |
+    |   |   |   +--read_sc_data
+    |   |   |   |   |
+    |   |   |   |   +--i2float
+    |   |   |   |
+    |   |   |   +--read_sc_hdr
+    |   |   |   |
+    |   |   |   +--set_iquv
+    |   |   |   |
+    |   |   |   +--skip_scan
+    |   |
+    |   +--get_filtd
+    |   |   |
+    |   |   +--avgprof
+    |   |   |   |
+    |   |   |   +--read_op_hdr
+    |   |   |   |   |
+    |   |   |   |   +--get_optype
+    |   |   |   |
+    |   |   |   +--readscan
+    |   |   |   |   |
+    |   |   |   |   +--read_op_hdr
+    |   |   |   |   |   |
+    |   |   |   |   |   +--get_optype
+    |   |   |   |   |
+    |   |   |   |   +--read_sc_data
+    |   |   |   |   |   |
+    |   |   |   |   |   +--i2float
+    |   |   |   |   |
+    |   |   |   |   +--read_sc_hdr
+    |   |   |   |   |
+    |   |   |   |   +--set_iquv
+    |   |   |   |   |
+    |   |   |   |   +--skip_scan
+    |   |   |
+    |   |   +--buildgn2
+    |   |   |   |
+    |   |   |   +--avgprof
+    |   |   |   |   |
+    |   |   |   |   +--read_op_hdr
+    |   |   |   |   |   |
+    |   |   |   |   |   +--get_optype
+    |   |   |   |   |
+    |   |   |   |   +--readscan
+    |   |   |   |   |   |
+    |   |   |   |   |   +--read_op_hdr
+    |   |   |   |   |   |   |
+    |   |   |   |   |   |   +--get_optype
+    |   |   |   |   |   |
+    |   |   |   |   |   +--read_sc_data
+    |   |   |   |   |   |   |
+    |   |   |   |   |   |   +--i2float
+    |   |   |   |   |   |
+    |   |   |   |   |   +--read_sc_hdr
+    |   |   |   |   |   |
+    |   |   |   |   |   +--set_iquv
+    |   |   |   |   |   |
+    |   |   |   |   |   +--skip_scan
+    |   |   |   |
+    |   |   |   +--cont
+    |   |   |   |
+    |   |   |   +--filt
+    |   |   |   |   |
+    |   |   |   |   +--extend
+    |   |   |   |
+    |   |   |   +--fshft
+    |   |   |   |   |
+    |   |   |   |   +--ffterpol
+    |   |   |   |   |   |
+    |   |   |   |   |   +--extend
+    |   |   |   |   |   |
+    |   |   |   |   |   +--xshift
+    |   |   |   |   |
+    |   |   |   |   +--terpol
+    |   |   |   |
+    |   |   |   +--gncorr
+    |   |   |   |
+    |   |   |   +--mean
+    |   |   |   |
+    |   |   |   +--ofstc2
+    |   |   |   |
+    |   |   |   +--shsl
+    |   |   |   |   |
+    |   |   |   |   +--corsh1
+    |   |   |   |   |
+    |   |   |   |   +--fshft
+    |   |   |   |   |   |
+    |   |   |   |   |   +--ffterpol
+    |   |   |   |   |   |   |
+    |   |   |   |   |   |   +--extend
+    |   |   |   |   |   |   |
+    |   |   |   |   |   |   +--xshift
+    |   |   |   |   |   |
+    |   |   |   |   |   +--terpol
+    |   |   |   |   |
+    |   |   |   |   +--mean
+    |   |
+    |   +--gncorr
+    |   |
+    |   +--ofstc2

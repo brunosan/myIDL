@@ -1,0 +1,433 @@
+;+
+;
+;                                  README
+;                                 --------
+;
+;    Location:  ~stokes/src/idl
+;
+;     Purpose:  This is the README file for the ASP IDL source directory.
+;
+;      Author:  rob@ncar, 1/92
+;
+;       Notes:  1) *.pro files are procedures or functions  [see below]
+;                  *.com files are common blocks
+;                  *.set files set type/length of values of common blocks
+;               2) update the "usage.pro" and "README" when adding routines
+;
+; =============================================================================
+;
+; Routine               Purpose
+; -----------           ------------------
+;
+;a_pot_field.pro        - do the Univ of Hi potential feild calculation
+;abmerge.pro            - merge the a- and b-channels into a single file
+;alias.pro              - simple Sun csh-like ("sort of") alias procedure
+;ambigs.pro             - return WHERE() the magnetic field is ambiguous
+;apod.pro               - apodize 1-d array with a cosine bell function
+;ary_div_row.pro        - divide a 2-D array by a 1-D array (row)
+;asp_trunc.pro          - truncate 4 arrays to the max/min of the given range
+;aspcal.pro             - apply X and T to Stokes I,Q,U,V
+;aspcomp.pro            - compare two ASP files
+;aspedit.pro            - edit ASP header values and/or concatenate ASP files
+;asplist.pro            - list op header and scan headers of a raw ASP op file
+;aspmeanv.pro           - return max of mean-of-V-extrema of input ASP op
+;aspprofile.pro         - do 'profiles' on I,Q,U,V image (was used by aspview)
+;aspview.pro            - display ASP I,Q,U,V specta in X Windows
+;avg_col.pro            - average some "cols" (x = const.) in a 2-D array
+;avg_row.pro            - average some "rows" (y = const.) in a 2-D array
+;avgprof.pro            - calculate average profile in a spot
+;avgprof_st.pro         - calculate average profile in a spot, St version
+;avgscans_i.pro         - average I spectra of specified scans to save file
+;az_event.pro           - event handler for az_view.pro
+;az_gray.pro            - install colormap for az_view.pro
+;az_view.pro            - azimuth viewer (prototype)
+;azam.pro               - use interactive cursor to disambiguate azimuth
+;azam_*.pro             - routines for azam.pro
+;azimuth_flip.pro       - flip 180 degree azimuth ambiguity based on where()
+;__________
+;
+;b_field.pro            - read and display a_* files dumped by program "bite"
+;b_image.pro            - return a 2D array of an a_* file dumped by "bite"
+;badcol.pro             - interpolate over 3 bad columns
+;bell.pro               - ring the bell a number of times
+;buildgn.pro            - build the pixel-by-pixel gain table for application
+;                         to ASP data; uses the data from the neutral density
+;                         filter measurements to obtain the response of each
+;                         pixel to varying light level; the output gaintable
+;                         should be applied only to data that is dark-
+;                         subtracted and which has had the rgb gain correction
+;                         applied (routine ofstcn.pro); the output of this is
+;                         intended to be used with the interpolatory routine
+;                         gncorr.pro
+;__________
+;
+;c_field.pro            - read and display stretched 2D image of a_* files
+;c_image.pro            - return a stretched 2D array of an a_* file
+;ca.pro                 - do a CLOSE, /ALL (faster to type)
+;calave.pro             - cal. average and rms values for set of cal. matrices
+;calc_rms.pro           - calculate RMS for an array
+;calcross.pro           - cross-correlate two images in the wavelength
+;                         direction, fit the shifts as a function of position
+;                         along the slit with a parabola, then Fourier shift
+;                         the images
+;calibrate.pro          - calibrate an ASP map (bias, RGB, and gain correct;
+;                         flip wavelength order; merge A and B; apply Xs and T;
+;                         remove skew and residual I->QUV crosstalk)
+;calib_gain.pro         - read scan; optionally bias, RGB, and gain correct,
+;                         and flip wavelength order (for calibrate.pro)
+;calib_res.pro          - resore variables (for calibrate.pro)
+;calib_xmat.pro         - read in and interpolate X matrices for all positions
+;                         along slit (for calibrate.pro)
+;calib_xt.pro           - apply Xs and T; remove skew and residual
+;                         I->QUV crosstalk (for calibrate.pro)
+;calmerge.pro           - merge the a- and b-channel calibration data
+;cct_min_max.pro        - install continuum minimum and maximum in structure c
+;change_cmap.pro        - allow user to modify colormap in various ways
+;check_readme.pro       - check that ASP README file is up to date
+;check_rec.pro          - check record (scan) header problem
+;color_pix.pro          - color a pixel for routine "wrap_key"
+;colorw.pro             - load grayscale color table plus one special color
+;cont.pro               - return where() the 'level' contour is in 'image'
+;cormax.pro             - the maximum of a cross correlation function
+;corsh1.pro             - find the shift of a line by finding the minimum
+;                         intensity to sub-pixel accuracy with polynomial
+;                         interpolation
+;corshft.pro            - find the shift between line 1 and line 2 by
+;                         correlation; sub-pixel accuracy with polynomial
+;                         interpolation adapted to do cross-correlation,
+;                         not just difference; tries only +/- 4 pixel shifts;
+;                         result is the amount line2 is shifted with respect
+;                         to line1, not the correction shift which should be
+;                         applied, which is the negative of the result
+;__________
+;
+;d.pro                  - delete all windows (calls delwin)
+;delwin.pro             - delete all windows
+;displayct.pro          - display a portion of the color table
+;displayctn.pro         - display a portion of the color table (normal coords)
+;__________
+;
+;e_image.pro            - return sky plane stretched array of an a_* file
+;equal.pro              - compare two values for equality (scalar or array)
+;extend.pro             - smoothly extend data to make it periodic over its
+;                         dimensioned extent
+;__________
+;
+;ffterpol.pro           - Fourier interpolation of a one-dimensional array
+;fftrp.pro              - obtain Fourier transform of data; make smooth
+;                         transition from beginning to end, remove mean,
+;                         and kill frequencies with rgb variation
+;field_cursor.pro       - run interactive cursor of field_plot.pro displays
+;field_plot.pro         - display b_* or c_* field images
+;field_scale.pro        - create window with scales of field_plot displays
+;filt.pro               - generates multiplicative flat-field correction to
+;                         remove high frequency fringes and (no longer)
+;                         residual rgb variation
+;filtavg.pro            - filter the residual rgb variations out of average
+;                         profile
+;fits_idl.pro           - convert from FITS to IDL
+;fix_rec.pro            - fix the record (scan) headers of an operation
+;fixr.pro               - fix a scalar or array, rounding to nearest integer
+;flatav.pro             - version of flatavg.pro which does not querry for
+;                         bad frames, averages all of them
+;flatavg.pro            - display I,Q,U,V ASP data from operation file,
+;                         optionally average scans, and write to file;
+;                         eliminate first column and last rows
+;flatavg2.pro           - output dark and averaged clear I spectra save files
+;flat_filtd.pro         - run flatavg2,genfiltd to get 'filtd' for calibrate
+;flicker.pro            - open new window and flicker between two images
+;flipx.pro              - flip the order of the X-coords in a 2-D array
+;flipy.pro              - flip the order of the Y-coords in a 2-D array
+;float2i.pro            - convert an I array from float to unsigned int
+;float_str.pro          - convert a floating point number to a string
+;fshft.pro              - shift array line by non-integer pixel shift by
+;                         linear interpolation; uses wraparound for ends
+;__________
+;
+;g1.pro                 - graph an array to PS or X Windows with graph1
+;g2.pro                 - graph 2 arrays to PS or X Windows with graph2
+;g3.pro                 - graph 3 arrays to PS or X Windows with graph3
+;g4.pro                 - graph 4 arrays to PS or X Windows with graph4
+;g6.pro                 - graph 6 arrays to PS or X Windows with graph6
+;gainit.pro             - calibrate ASP spectra (e.g., a map)
+;gain_check.pro         - check gaintable from buildgn.pro for all zeros in
+;                         independent (monotonic) values
+;gain_merge_xt3.pro     - do 'gainit', 'abmerge', and 'gain_xt3', i.e.,
+;                         flat-fielding, spectra merging, and calibration
+;                         (superseded by calibrate.pro)
+;gain_xt.pro            - recalibrate by removing old X,T and applying new X,T
+;gain_xt2.pro           - run gain_xt in a loop
+;gain_xt3.pro           - apply X's (vary along slit) and T; X's are applied
+;                         according to the merge status in the scan header;
+;                         does skew correction and I->QUV crosstalk removal too
+;gauss1.pro             - Gaussian function for CURVEFIT
+;genibfz.pro            - generate images intensity, abs(field strength),
+;                         fill factor, net polarization for pltibfz.pro (old)
+;genibpg.pro            - generate images intensity, field strength,
+;                         field azimuth, field inclination for pltibpg (old)
+;geniebb.pro            - generate images intensity, error in field strength,
+;                         B0, B1 for pltiebb.pro (old)
+;genivdd.pro            - generate images intensity, Doppler velocity,
+;                         Doppler width, damping ratio for pltivdd.pro (old)
+;genfiltd.pro           - generate the 2nd order gain correction array
+;get_imat.pro           - return a floating point identity matrix
+;get_ncolor.pro         - return the number of available colors
+;get_nmap.pro           - return the number of maps in the ASP file
+;get_nscan.pro          - return the number of scans in the ASP file
+;get_optype.pro         - return a string containing the ASP operation type
+;get_st.pro             - calculate St info for use in 'ttt'
+;get_st2.pro            - calculate new St from old St (see get_st.pro)
+;get_t.pro              - return a telescope matrix
+;get_version.pro        - return the version number of the ASP file
+;get_words.pro          - separate text string(s) into array of words
+;getiiii.pro            - read and set up images to plot in pltiiii.pro
+;                         (continuum, field strength,azimuth,inclination)
+;gncorr.pro             - apply pixel-by-pixel gain correction to a Stokes I
+;grabps.pro             - grab the image in the current X window into a PS file
+;graph1.pro             - graph an array to PS or X Windows
+;graph2.pro             - graph 2 arrays to PS or X Windows
+;graph3.pro             - graph 3 arrays to PS or X Windows
+;graph4.pro             - graph 4 arrays to PS or X Windows
+;graph6.pro             - graph 6 arrays to PS or X Windows
+;__________
+;
+;h.pro                  - run 'helps' on 1 to 20 values
+;hair.pro               - determine the skewness of the image from measured
+;                         positions of the hairlines at top and bottom;
+;                         should be run on cal clear port image to get input
+;                         for skew routine
+;helplist.pro           - show list of help options and other useful info
+;helps.pro              - do HELP on a variable, and if it's a structure,
+;                         print the fields
+;hist.pro               - plot a histogram of an array
+;__________
+;
+;i2float.pro            - convert an I array (unsigned short) to float
+;icross.pro             - determine residual i -> Q,U,V crosstalk from the
+;                         continuum spectral region, then apply the inverse
+;                         of that crosstalk to the data; crosstalk determined
+;                         and applied on a row-by-row basis
+;idl_fits.pro           - convert from IDL to FITS
+;in_set.pro             - return 1 if scalar is in 1D array, else return 0
+;insert_wrap.pro        - insert one 1-D array into another, possibly wrapping
+;insert_wrapm.pro       - "max version" of insert_wrap:  the maximum of the
+;                         existing value or the new value gets put in the array
+;interp4x4.pro          - linearly interpolate a 4x4 matrix from a set of
+;                         matrices
+;iprof.pro              - display I,Q,U,V profiles given *.pf files output
+;                         from the Stokes inversion code (see pf_ps.pro)
+;iquv_fits.pro          - write out ASP operation I,Q,U,V in FITS format
+;is_raw.pro             - return 1 if 'raw' ASP data, else return 0
+;iv_fits.pro            - write out ASP operation I,V in FITS format
+;__________
+;
+;label_iquv.pro         - label I,Q,U,V for aspview
+;laser_sl.pro           - create laser profile for the inversion code
+;ls.pro                 - spawn an ls (simpler than $ls)
+;listop.pro             - list an operation header
+;lsq_iters.pro          - non linear least squares driver
+;lsq_xt.pro             - do least squares fit of ASP X & T matrix
+;lsq_xt_brew.pro        - VTT instrument model calculation for lsq_xt
+;__________
+;
+;maxit.pro              - truncate an array to the maximum value specified
+;mean.pro               - calculate mean (float) value of an array
+;mean_col.pro           - calculate mean values of the columns in an array
+;medfilt.pro            - apply a median filter to an array
+;minit.pro              - truncate an array to the minimum value specified
+;minmaxpro.pro             - print min and max values of input
+;mirror.pro             - compute the Mueller Matrix of a mirror
+;mk_asp_help.pro        - make ASP IDL help file
+;mm.pro                 - print min and max values of input (same as minmaxpro)
+;__________
+;
+;n_dims.pro             - return number of dimensions of a variable
+;newct.pro              - select from one of several predefined color tables
+;newct_special.pro      - insert special colors at end of color table
+;newct_tvscl.pro        - do tvscl with color table from 'newct, /special'
+;newwct.pro             - install color map with part that 'wraps around'
+;notch_p.pro            - notch out a portion of an image
+;__________
+;
+;ofstc2.pro             - [ofstcn used in genfiltd, gain, hair, shsl(it)]
+;ofstc3.pro             - [ofstcn used in gainit.pro; corrects for I, Q, U, V]
+;ofstcn.pro             - correct the input image for offset variations by
+;                         subtracting the average of dark columns at first
+;                         of image; averages computed separately for red,
+;                         green, blue channels of each CCD by averaging
+;                         columns 3+6, 4+7, and 5+8 of the dark region at
+;                         left of each image, then subtracting these values
+;                         from the corresponding following r,g,b columns of
+;                         the image; next, it calculates the residual 3-column
+;                         variation from dark image and corrects for it by a
+;                         multiplicative factor; this corrects accurately for
+;                         the residual r-g-b gain errors [used in buildgn]
+;__________
+;
+;p.pro                  - print a value (faster to type than 'print')
+;path.pro               - print !PATH in readable format
+;pause.pro              - print message and wait until user hits a 'return'
+;pf_next_in.pro         - input next profile set from a *.pf file
+;pf_plot.pro            - plot profiles in a *.pf file
+;pf_ps.pro              - plot profiles in a *.pf file to PostScript
+;pf_xy_map.pro          - compute map of file pointers for a *.pf file
+;plot_4.pro             - plot 4 images on one plot (e.g., I, Q, U, V)
+;plot_cbars.pro         - plot the color bars for aspview
+;plot_hval.pro          - plot and/or return a record (scan) header value
+;plot_m4.pro            - plot 3 or 4 graphs on one output (X or PostScript)
+;plot_meansc.pro        - plot and/or return an average value for each scan in
+;                         I, Q, U, and V; use it for detecting bad scans
+;plot_ps3.pro           - plot three images for Bruce in PostScript
+;plot_st2.pro           - plot results of get_st2.pro
+;pltibfz.pro            - plot images in PostScript from genibfz.pro (old)
+;pltibpg.pro            - plot images in PostScript from genibpg.pro (old)
+;pltiebb.pro            - plot images in PostScript from geniebb.pro (old)
+;pltivdd.pro            - plot images in PostScript from genivdd.pro (old)
+;pltiiii.pro            - plot images obtained from getiiii.pro in PostScript
+;pltiiiix.pro           - plot images obtained from getiiii.pro in X
+;pop_cult.pro           - return WHERE array for labels in a pop up window
+;pot_field.pro          - do University of Hawaii potential field calculation
+;prettyprint.pro        - routines to assist in making IDL calling tree
+;prof4.pro              - set up and do "profile4" on four images
+;profile1.pro           - do "profiles" on an image for a given row or column
+;profile4.pro           - do "profiles" on 4 images at a time
+;profilep.pro           - Rob's version of PROFILES with xpos/ypos added
+;ps_asp.pro             - stretch images output from 'bite' and plot them to
+;                         PostScript files
+;ps_asp_etc.pro         - finish out PostScript file details started by
+;                         azam or ps_asp
+;ps_asp_str.pro         - initialize structure for ps_asp.pro and azam_ps.pro
+;puff.pro               - return 2D byte float or long array with dimensions
+;                         changed by an integer factor (replaces CONGRID)
+;put_nmap.pro           - change the #_of_maps  info in the op hdr common block
+;put_nscan.pro          - change the #_of_scans info in the op hdr common block
+;put_optype.pro         - put new operation type in op header common
+;put_version.pro        - put new version number in op header common
+;pwspec.pro             - determine average power spectrum from x-direction
+;                         Fourier transform of input array
+;__________
+;
+;q.pro                  - exit idl (faster to type)
+;__________
+;
+;r.pro                  - do a retall (faster to type)
+;r_frame_asp.pro        - translate magnetic field vector from telescope frame
+;                         to local solar frame
+;r_frame_aspinv.pro     - translate magnetic field vector from local solar
+;                         frame to telescope frame
+;r_frame_julian.pro     - compute Julian time including fraction of day
+;r_frame_solcor.pro     - do solar ephemeris
+;r_frame_sphduo.pro     - translate unit vector form one local long,lat frame
+;                         frame to another local long,lat frame
+;r_frame_sphtri.pro     - transform a unit vector between two spherical ref pts
+;r_frame_sphtri0.pro    - (same as r_frame_sphtri but doesn't do parallac. ang
+;r_frame_sun.pro        - from time, hilio centric (west,north) arc seconds on
+;                         sun find solar longitude and latitude
+;r_frame_suninv.pro     - from time, solar latitude, solar longitude find
+;                         helio centric coordinates from disk center
+;rabin.pro              - generate data for for the Magnetograph Workshop
+;rabin2.pro             - generate cont., field strength, fill factor,
+;                         inclination, flux, azimuth images for comparison
+;                         with Mees polarimeter data
+;rca.pro                - do a 'RETALL' and a 'CLOSE, /ALL' (faster to type)
+;read_floats.pro        - read all the floating point values from a stream file
+;                         and return the result as a floating point vector
+;read_line.pro          - read a line of an ASCII file
+;read_op_hdr.pro        - read ASP op header from file into common;
+;                         optionally list it to a file or stdout
+;read_sc_data.pro       - read ASP scan data from file into common
+;read_sc_hdr.pro        - read ASP scan header from file into common;
+;                         optionally list it to a file or stdout
+;read_t.pro             - return a T matrix from a file output from ttt.f
+;read_x.pro             - return an X matrix from a file output from ttt.f
+;readscan.pro           - read a specified sequential scan from a file
+;rflctvty.pro           - compute the reflectance and retardance of a mirror
+;rem_clouds.pro         - get rid of clouds
+;rem_index.pro          - remove a value from a vector
+;rev_scans.pro          - reverse the scan order and numbering of an operation
+;reversal.pro           - return where() there is magnetic field reversal
+;roundit.pro            - round a floating point number to a number of digits
+;row_div_ary.pro        - divide a 1-D array (row) by a 2-D array
+;run_shg.pro            - produce I,V spectroheliogram plots
+;                         (runs shg, shgplot, lpr)
+;__________
+;
+;s_image.pro            - return a 2D array of an a_* file
+;scalew.pro             - scale array for use with "colorw.pro" colormap
+;set_iquv.pro           - set lengths of arrays for common block 'iquv'
+;set_sub.pro            - return the result of one set minus another set
+;set_sub2.pro           - (another method)
+;setmtx.pro             - return four by four matrix set with argument list
+;shftquv.pro            - renormalize then Fourier shift b-channel Q,U,V
+;                         images then combine them
+;shg.pro                - produce a spectroheliogram from ASP data
+;shg_darks.pro          - prepare dark and clear images for use in shg.pro
+;shgplot.pro            - plot I and V spectroheliograms to PostScript file
+;shgview.pro            - produce spectroheliogram from ASP data and allow
+;                         user to see spectra for mouse-selected scans
+;shsl.pro               - compute the "line-free' normalized image of the
+;                         corrected cal clear port image, which has already
+;                         been corrected for pixel-pixel variations using
+;                         gncorr.pro; finds shifts from telluric line
+;                         contained between ilo-ihi, then computes average
+;                         line profile from this, and divides by that profile
+;                         appropriately shifted along the slit
+;shslit.pro             - build the ideal spectral image without defects;
+;                         built from shifting the average spectral profile by
+;                         the relative wavelength shift of the weak line
+;                         profiles in the ND filter flat-field images as a
+;                         function of distance along the slit
+;sign.pro               - return the sign of a number
+;sizeof.pro             - return information from the SIZE function
+;skew.pro               - remove the skewness of spectral image using slope
+;                         of hairlines previously derived using routine hair
+;skip_scan.pro          - skip to specified scan number in ASP file
+;split_spec.pro         - split ASP spectra by wavelength into two files
+;str2int.pro            - return an array of integers given a sting of integers
+;strcam.pro             - return camera string given ASP op header common block 
+;strdate.pro            - return date string given ASP scan header common block
+;stringit.pro           - return value as a string with whitespace compressed
+;strip_q.pro            - return the string between double quotes of a line
+;strsub.pro             - return a string with a substring substitution
+;__________
+;
+;t_vecs.pro             - compute VTT Stokes vectors
+;template.pro           - simple template for processing ASP data
+;terpol.pro             - interpolate linearly over pixels
+;timer.pro              - return elapsed time in int array of [hours,mins,secs]
+;traceback.pro          - print traceback information
+;truncit.pro            - truncate a floating point value to a number of digits
+;tvasp.pro              - perform special ASP scaling on an image
+;tvwin.pro              - open up a window the dim's of the plot and plot it
+;tvwinp.pro             - do "tvwin" with profiles to center of screen
+;__________
+;
+;usage.pro              - print usage information for an ASP routine
+;usage_event.pro        - event driver for usage_widget.pro
+;usage_widget.pro       - X Windows interface for usage.pro
+;__________
+;
+;void.pro               - void out a function, as in C
+;vttmtx.pro             - find vacuum tower telescope matrix, 4x4
+;__________
+;
+;wfits.pro              - write an array into a standard FITS file
+;wlcross.pro            - cross-correlate in the wavelength direction image
+;                         bim with image aim, fit the shifts as a function
+;                         of position along the slit with a parabola, then
+;                         Fourier shift bim with respect to aim
+;wrap_key.pro           - display an annulus key (180 or 360 degrees)
+;wrap_key2.pro          - faster polyfill version of wrap_key.pro
+;wrap_scale.pro         - scale an array to be used with the 'newwct' colormap
+;wrap_scalew.pro        - this is "wrap_scale" with a wrapper around it
+;writ_op_hdr.pro        - write ASP op header from common into a file
+;writ_sc_data.pro       - write ASP scan data into a file
+;writ_sc_hdr.pro        - write ASP scan header from common into a file
+;write_floats.pro       - write the floating point array to a stream file
+;writscan.pro           - write ASP scan (header and data) out to file
+;__________
+;
+;xshift.pro             - FFT frequency space shift theorem
+;__________
+;
+;-

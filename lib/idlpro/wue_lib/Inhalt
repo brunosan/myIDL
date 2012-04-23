@@ -1,0 +1,309 @@
+add_margin.pro : Helpfile eindeutig
+ann.pro : Zeichenprogramm, selbsterklaerend; Genaueres s. annhlp.pro
+annarr.pro -I
+annbox.pro  I
+anncrc.pro  I
+anncrv.pro  I
+annedt.pro  I
+annexe.pro  I
+annget.pro  I- Unterroutinen von ann.pro
+annhlp.pro  I
+annply.pro  I
+annput.pro  I
+annres.pro  I
+anntxt.pro -I
+apodize.pro
+arcs.pro : Helpfile eindeutig, Plot muss vorhanden sein
+array.pro : Helpfile eindeutig
+ave2d.pro : Helpfile eindeutig
+bar.pro : Helpfile eindeutig, selbsterklaerend
+bell.pro : Helpfile eindeutig
+binbound.pro : Helpfile eindeutig, Dim > 2, Nutzen fraglich
+blend.pro : Helpfile eindeutig, Nutzen fraglich
+box_size.pro : Helpfile nicht eindeutig, nur Unterprogramm tu movbox.pro
+brk_date_time.pro : Helpfile eindeutig 
+ceil.pro : Helpfile eindeutig
+checker.pro : Helpfile eindeutig
+cm2norm.pro : Helpfile eindeutig
+coastline.pro
+color_pal.pro : Helpfile eindeutig
+conttw.pro
+convexhull.pro : Helpfile eindeutig, Nutzen fraglich
+cosfilt.pro : Helpfile eindeutig
+costap.pro : Helpfile eindeutig
+crs.pro : Helpfile eindeutig
+ctbld.pro : Helpfile eindeutig
+ctedt.pro : Helpfile eindeutig
+ctint.pro :
+ctrim.pro : Helpfile eindeutig, Nutzen fraglich
+cumulate.pro : Helpfile eindeutig
+datacrs.pro : Helpfile eindeutig
+date2ymd.pro : Helpfile eindeutig
+delchr.pro : Helpfile eindeutig
+devcrs.pro : Helpfile eindeutig
+diskcenter.pro : Helpfile eindeutig, Nutzen fraglich
+disp_img.pro
+dn2date.pro : Helpfile eindeutig
+dot.pro : Helpfile eindeutig, Unterprogramm von sun_shade.pro
+draw.pro
+drawpoly.pro : Helpfile eindeutig, selbsterklaerend
+dt_tm_brk.pro : Helpfile eindeutig
+dt_tm_chk.pro : 
+dt_tm_dif.pro : Helpfile eindeutig
+dt_tm_mak.pro : Helpfile eindeutig
+embed.pro : Helpfile eindeutig
+enter.pro :
+expand.pro : Helpfile eindeutig
+expand2.pro
+explore.pro : ?
+exrange.pro :
+extracthlp.pro
+f2fi16.pro : Helpfile eindeutig, rechnet in Fuss
+factor.pro : Helpfile eindeutig
+fft_filter.pro : Helpfile eindeutig
+filebreak.pro : Helpfile eindeutig
+filename.pro : Helpfile eindeutig
+findfile2.pro : Helpfile eindeutig
+firstchar.pro : Helpfile eindeutig
+fit.pro : Helpfile eindeutig, selbsterklaerend
+fit12.pro : Unterprogramm von fit.pro
+fit6.pro : Unterprogramm von fit.pro
+fitscomm.pro
+fitsdata.pro
+fitsedit.pro
+fitshdr.pro
+fitshist.pro
+fitshline.pro
+fitsminhdr.pro
+fitsnum.pro
+fitsps.pro
+fitsputc.pro
+fitsputcom.pro
+fitsputhis.pro
+fitsputi.pro
+fitsputl.pro
+fitsputline.pro
+fitsputr.pro
+fitsq.pro
+fitsread2.pro
+fitssave.pro
+fitsstr.pro
+fitstxtc.pro
+fitstxtcom.pro
+fitstxthis.pro
+fitstxti.pro
+fitstxtl.pro
+fitstxtr.pro
+fitswrite2.pro
+fixgaps.pro
+flat2sph.pro : Helpfile eindeutig
+floor.pro : Helpfile eindeutig
+fndwrd.pro : Helpfile eindeutig
+gen_coastline.pro
+gen_fit.pro : Helpfile eindeutig  
+genshape.pro : Helpfile eindeutig
+getdefdir.pro : ?
+getfile2.pro
+getfileln.pro : Helpfile eindeutig
+getkey.pro : Helpfile eindeutig, viel benutztes Unterprogramm
+getphrase.pro : Helpfile eindeutig
+getrun.pro : Helpfile nicht eindeutig, Nutzen fraglich
+getview.pro : 
+getwindow.pro : Helpfile eindeutig
+getwrd.pro : neuere Version besorgen
+globe_image.pro
+help_save2.pro : Helpfile eindeutig
+hilight.pro
+hist.pro : Helpfile eindeutig
+histo.pro : Helpfile eindeutig
+hlp.pro : erkennt Art der Variable
+hor.pro : Helpfile eindeutig
+hori.pro : Helpfile eindeutig
+hsv2rgb.pro
+imagesize.pro
+imgarrow.pro
+imgbox.pro
+imgdrw.pro
+imgfrm.pro
+imgpolrec.pro
+imgrecpol.pro
+imgtxt.pro
+imgunder.pro
+inrange.pro
+interp2.pro
+interval_sec.pro
+isnumber.pro : Helpfile eindeutig
+jd2date.pro : Helpfile eindeutig
+jd2str.pro : Helpfile eindeutig
+jd2ymd.pro : Helpfile eindeutig
+kurf.pro
+kurt.pro : Helpfile eindeutig ( was ist Kurtosis ? )
+lastindex.pro
+latexoff.pro
+latexon.pro
+legend.pro
+linepts.pro
+linfill.pro
+ll2rb.pro
+lmst.pro
+locate.pro
+locmax.pro
+ls2.pro
+make_ruler.pro
+makedata.pro
+makei.pro
+makelabels.pro
+makeliner.pro
+maken.pro : Helpfile eindeutig
+makevlt.pro
+makex.pro : Helpfile eindeutig
+makexy.pro : Helpfile eindeutig
+makey.pro : Helpfile eindeutig
+makez.pro : Helpfile eindeutig
+mcompute.pro
+mean.pro : Helpfile eindeutig
+midv.pro
+monthdays.pro : Helpfile eindeutig
+monthnames.pro : Helpfile eindeutig
+mort.pro : Helpfile eindeutig ( Kreditrechnung )
+movbox.pro : Helpfile eindeutig ( wird oft aufgerufen )
+movcross.pro
+move.pro
+mve.pro
+namenum.pro
+naxes.pro
+nearest.pro
+nextitem.pro
+nextnum.pro
+nicenumber.pro
+normcrs.pro
+nphrases.pro
+nruns.pro
+nthweekday.pro
+num_dec.pro
+numfactors.pro
+numname.pro
+nwrds.pro
+one2two.pro
+opfit2d.pro
+orthopoly.pro
+path.pro
+phase.pro
+plane_int.pro
+plint.pro
+plotp.pro
+plotwin.pro
+polrec.pro
+polrec3d.pro
+poly_fit2.pro
+polystat.pro
+pos_cm.pro
+precess2.pro
+prime.pro
+print_fact.pro
+ps_sym.pro
+psfonts.pro
+put_color_scale.pro
+putfile.pro
+radial_img.pro
+radii.pro
+radon.pro
+raout.pro
+rb2ll.pro
+rd_bbsohdr.pro
+rd_fitshdr.pro
+rdcol.pro
+rdfile.pro
+readtokey.pro
+rebin2.pro
+recpol.pro
+recpol3d.pro
+regions.pro
+regionsbar.pro
+repword.pro
+restore2.pro
+rgb2hsv.pro
+rot_3d.pro
+rotate_xy.pro
+rotvlt.pro
+rtics.pro
+runlength.pro
+save2.pro
+scalearray.pro
+sdev.pro
+sechms.pro
+secstr.pro : Helpfile eindeutig
+segment.pro
+set_isoxy.pro
+set_window.pro
+shade_clt.pro
+show_box.pro
+sign.pro
+simp.pro
+skew.pro
+skewf.pro
+skewint.pro
+smooth2.pro
+spc.pro 
+sph_demo.pro : Graphische Demonstration
+sphdist.pro
+sphic.pro
+sphinit.pro
+sphlat.pro
+sphlng.pro
+sphplot.pro
+sphrad.pro
+sphtext.pro
+splat.pro
+step_ct.pro
+stereo.pro
+stext_xyp.pro
+strep.pro
+stress.pro
+stripshift.pro
+strlentab.pro
+strsec.pro : Helpfile eindeutig
+strsub.pro
+strtrm2.pro
+subnormal.pro
+sum2d.pro
+sun.pro : Helpfile eindeutig, selbsterklaerend
+sun_shade.pro
+superpix.pro
+tape_select.pro
+time_label.pro
+timeaxis.pro
+timer.pro
+tnaxes.pro
+todev.pro
+topo.pro
+trace.pro
+translate.pro
+tv_polar.pro
+tvbox2.pro
+tvcirc.pro
+tvim.pro
+tvpos.pro
+tvrdbox.pro
+tvwrbox.pro
+two2one.pro
+unit.pro : Helpfile eindeutig
+varf.pro
+variance.pro
+vase.pro
+vecfld.pro : Helpfile eindeutig
+vect_angle.pro
+ver.pro : Helpfile eindeutig
+veri.pro : Helpfile eindeutig
+weekday.pro : Helpfile eindeutig
+wmenu2.pro
+wordarray.pro
+wordorder.pro
+wordpos.pro
+xprint.pro
+xtics.pro
+xyoutb.pro
+ymd2date.pro
+ymd2jd.pro
+zoom2.pro
+zplot.pro

@@ -1,0 +1,56 @@
+#------------------------------------------------------------------------------
+#
+#	--- NAWK PROGRAM ---
+#
+#	program:  get_usage
+#
+#	purpose:  get usage information from ASP IDL file
+#
+#	usage:  nawk -f get_usage < file.pro
+#
+#	notes:  - this script it used by usage_event.pro
+#		  (see usage_widget.pro and script 'aspu').
+#
+#	author:  rob@ncar, 3/93
+#
+#------------------------------------------------------------------------------
+
+BEGIN { in_usage=0; ix=1; done=0 }
+
+#---------------
+
+$1 == "if" && done != 1	{ in_usage=1 }
+
+$1 == "endif"	     	{ in_usage=0; done=1 }
+
+in_usage == 1		{ if ($1 != "if" && $1 !~ /return/)
+				A[ix++]=cullit($0) }
+
+#---------------
+
+END { for (i=1; i<ix; i++) print A[i] }
+
+##function cullit(line) {
+##	jx = match(line, "'")
+##	if (jx > 0) {
+##		val = substr(line, jx+1)    # remove before 1st single quote
+##		n = gsub("'$", "", val)     # remove last single quote
+##		n = gsub("''", "'", val)    # change double singles to single
+##		return val
+##	} else {
+##		return ""
+##	}
+##}
+
+function cullit(line) {
+	jx = match(line, "\"")
+	if (jx > 0) {
+		val = substr(line, jx+1)    # remove before 1st single quote
+		n = gsub("\"$", "", val)    # remove last single quote
+		return val
+	} else {
+		return ""
+	}
+}
+
+#------------------------------------------------------------------------------

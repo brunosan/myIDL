@@ -1,0 +1,27 @@
+;
+;	File:  op_hdr.set
+;
+;	Purpose:  set lengths of val's for operation hdr common block 'op_hdr'
+;
+;	Date:  11/92
+;
+;	Notes:  512 total bytes in operation header
+;		IDL long int = 4 bytes each
+;		IDL float = 4 bytes each
+;
+;------------------------------------------------------------------------------
+;
+command=0L  & head_type=0L & year=0L     & month=0L      & day=0L
+hour=0L     & min=0L       & sec=0L      & det=0L        & demod=0L
+wavelen=0L  & optype=0L    & opnum=0L    & dem1=0L       & dem2=0L
+det1=0L     & det2=0L      & det3=0L     & det4=0L       & modhex=0L
+modix=0L    & sgain_i=0L   & sgain_p=0L  & sgain_v=0L    & sset=0L
+hexad=0L    & macro=0L     & mstepsz=0.0 & nmstep=0L     & fstepsz=0.0
+nfstep=0L   & cconfigs=0L  & wavelen2=0L & activecams=0L
+tapename = '                    '
+accnum=0L   & dhoff=0L     & dvoff=0L    & dnumx=0L      & dnumy=0L
+bmode=0L    & dlsb=0L
+detwin  = bytarr(100, /nozero)
+orig_nscan=0L	& input_x1=0L	& input_y1=0L	; added by Rob for inversion
+merged=0L					; added by Rob for A&B merging
+ofiller = bytarr(212, /nozero)			; orig ofiller was 228 bytes

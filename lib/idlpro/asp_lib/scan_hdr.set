@@ -1,0 +1,43 @@
+;
+;	File:  scan_hdr.set
+;
+;	Purpose:  set lengths of val's for scan hdr common block 'scan_hdr'
+;
+;	Date:  11/92
+;
+;	Notes:  512 total bytes in scan header
+;		IDL long int = 4 bytes each
+;		IDL double float = 8 bytes each
+;
+;------------------------------------------------------------------------------
+;
+s_command=0L & s_head_type=0L & s_year=0L   & s_month=0L   & s_day=0L
+s_hour=0L    & s_min=0L       & s_sec=0L    & s_det=0L     & s_demod=0L
+s_wavelen=0L & s_snum=0L      & s_see1=0L   & s_see2=0L    & s_servo1=0L
+s_servo2=0L  & s_istep=0L     & s_config=0L & s_iconfig=0L & s_posn=0L
+;
+s_ubfwav   = 0D				; new with version 101
+;
+s_mstat    = lonarr(5,7, /nozero)
+s_vfiller  = bytarr(4, /nozero)
+s_vtt      = dblarr(23, /nozero)
+;
+s_vtt2     = 0D				; new with version 101
+;
+s_fmc	   = 0L				; new with version 101
+s_fms	   = 0L				; new with version 101
+s_tapef	   = 0L				; new with version 101
+;
+s_merge	   = 0L				; new with version 102 (or later?)
+;
+s_dfiller1 = bytarr(72, /nozero)	; broke into two parts with version 101
+s_dfiller2 = bytarr(28, /nozero)
+
+
+UNMERGED	= 0L			; settings for s_merge
+A_AND_B		= 1L
+A_ONLY		= 2L
+B_ONLY		= 3L
+USED_PREV	= 4L
+
+;------------------------------------------------------------------------------

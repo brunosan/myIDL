@@ -1,0 +1,44 @@
+#!/bin/csh -f
+#
+#	script:  do_shg
+#
+#	purpose:  plot some ASP spectroheliograms from Exabyte tape
+#
+#	author:  rob@ncar, 2/93
+#
+#	usage:  - get in a working directory to hold temporary files
+#		- edit the following variables below:
+#			seqops, 
+#
+#	notes:
+#
+#------------------------------------------------------------------------------
+
+#	EDIT THE FOLLOWING
+#
+set seqops	= (1 2 3 5)		# sequential op's to read
+set tunit	= 4			# tape unit
+
+#------------
+
+
+#
+#	Loop for each operation.
+#
+foreach sop ($seqops)
+
+	echo "------------------------"
+	echo " "
+	echo "processing sequential operation $sop ..."
+
+	echo " "
+	echo "reading file from tape ..."
+	aspdd -d $tunit
+
+end
+
+
+
+
+exit 0
+

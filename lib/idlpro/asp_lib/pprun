@@ -1,0 +1,58 @@
+;------------------------------------------------------------------------------
+;
+;	file:  pprun
+;
+;	purpose:  create PS output to plot_4
+;
+;	usage:	1) create a map with shg.pro
+;		2) edit this file (or a copy) as needed
+;		3) @pprun
+;		4) do lp or 'tags' on output (fileps=?)
+;
+;	author:  rob@ncar, 5/92
+;
+;------------------------------------------------------------------------------
+;
+
+;;map = dist(255,300)
+restore, '/i/asp/data/raw/92.03.25/5.shg.save'
+
+afile = '05.fab.cmap'
+xscan = 200
+readscan, afile, xscan, ii, qq, uu, vv
+t2 =    '3/25/92  15:16:06  lat 6.75  long -42.44 (deg.)'
+t3 =    'Op. 5  Scan 200   - Calibrated'
+
+fileps = 'rob.ps'
+
+;;cfudge = 1.0
+cfudge = 1.2
+
+; -------
+
+;x2 = 255
+;x2 = 254
+x1 = 0
+x2 = 240
+
+;y2 = 228
+;y2 = 255
+y1 = 0
+y2 = 228
+
+ys1 = 20
+ys2 = 215
+
+;color=1
+color=0
+
+;thick=1
+thick=-1
+
+; -------
+;
+title = 'HAO/NSO Advanced Stokes Polarimeter'
+plot_4, ii, qq, uu, vv, title=title, t2=t2, t3=t3, $
+	x1=x1, x2=x2, y1=y1, y2=y2,  ys1=ys1, ys2=ys2, xscan=thick*xscan, $
+	map=map, /ps, fileps=fileps, color=color, cfudge=cfudge, afile=afile
+;

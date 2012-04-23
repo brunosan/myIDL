@@ -1,0 +1,78 @@
+;
+;	file:  wrap.set
+;
+;	purpose:  prepare common block for 'newwct' and 'wrap_scale'
+;
+;	author:  rob@ncar, 8/92
+;
+;	usage:  (see newwct)
+;
+;------------------------------------------------------------------------------
+;
+;	Get number of available colors.
+;	(Must open X window so that !d.n_colors is set properly.)
+;
+old_window = !d.window			; save old window index
+old_device = !d.name			; save old device type
+set_plot, 'x'				; change to X windows
+window, /free, /pixmap, xs=1, ys=1	; open X pixmap
+wdelete, !d.window			; remove the pixmap
+num_total = !d.n_colors			; get number of available colors
+set_plot, old_device			; return to old device type
+if old_window ne -1 then $		; restore old window index
+	wset, old_window
+;
+;------------------------------------------------------------------------------
+;
+;	Set table:  back ; -color- ; -gray- ; nodata(2) ; contour(2) ; text
+;
+if (ix_back eq 1) or (ix_back eq 3) or (ix_back eq 5) then begin
+	num_color = 128
+	num_special = 6
+	num_gray = num_total - num_color - num_special
+;
+;	(Tweek this color offset for non-wrapped color, #2.)
+	coff = 25
+	num_color2 = num_color - coff
+;
+;	(Tweek this range of unused colors for disjoint color, #3.)
+	gap = 20
+	num_color3h = (num_color2 / 2) - gap
+;
+	ix_back = 0			; index of background for X
+	ix_color = 1			; index of colorscale (wrap)
+	ix_color2 = ix_color + coff	; index of colorscale (^wrap)
+	ix_color3a = ix_color2		; index of colorscale (^wrap, disjoint)
+	ix_color3b = ix_color2 + num_color2 - num_color3h     ; (" ", 2nd part)
+	ix_gray = ix_color + num_color	; index of grayscale
+	ix_nodat = ix_gray + num_gray	; index of no data #1 (for colorscale)
+	ix_nodat2 = ix_nodat + 1	; index of no data #2 (for grayscale)
+	ix_cont1 = ix_nodat2 + 1 	; index of 1st contours
+	ix_cont2 = ix_cont1 + 1 	; index of 2nd contours
+	ix_text = ix_cont2 + 1		; index of text
+;
+;------------------------------------------------------------------------------
+;
+;	Set table:  back ; -gray- ; nodata(2) ; contour(2) ; text
+;
+endif else begin
+	num_color = 0			; no colorscales
+	num_color2 = 0
+	num_color3h = 0
+	ix_color = -1
+	ix_color2 = -1
+	ix_color3a = -1
+	ix_color3b = -1
+
+	num_special = 6
+	num_gray = num_total - num_special
+
+	ix_back = 0			; index of background
+	ix_gray = 1			; index of grayscale
+	ix_nodat = ix_gray + num_gray	; index of no data #1
+	ix_nodat2 = ix_nodat + 1	; index of no data #2
+	ix_cont1 = ix_nodat2 + 1 	; index of 1st contours
+	ix_cont2 = ix_cont1 + 1 	; index of 2nd contours
+	ix_text = ix_cont2 + 1		; index of text
+endelse
+;

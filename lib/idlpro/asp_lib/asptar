@@ -1,0 +1,27 @@
+#!/bin/csh -f
+#
+#	script:  asptar
+#
+#	purpose:  tar up files to be saved to MSS from ~stokes/src/idl
+#
+#	usage:  asptar
+#
+#	author:  rob@ncar, 11/92
+#
+#------------------------------------------------------------------------------
+
+set output	= asp-idl.tar
+set files	= (README Makefile Graham check_* pprun* asptar)
+
+echo " "
+echo "tar cvf - $files *.pro *.com *.set *.c > $output"
+tar cvf - $files *.pro *.com *.set *.c > $output
+
+echo " "
+echo "compress $output"
+compress $output
+
+echo " "
+echo "Output file is:  `ls -l $output*`"
+echo " "
+

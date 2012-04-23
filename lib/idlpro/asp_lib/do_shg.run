@@ -1,0 +1,43 @@
+;
+;	file:  do_shg.run
+;
+;	purpose:  run shg/shgplot on an op and exit IDL
+;
+;	note:  - tape number (for plot header) is hardwired below
+;	       - assumes exactly one *.map file in the current directory
+;
+;	ex:  idl < do_shg.run
+;
+;------------------------------------------------------------------------------
+
+;	EDIT THIS
+;
+tape = 'W920619A'
+
+;	set op number assuming exactly 1 map in this directory
+;
+op = findfile('*.map')
+op = strmid(op(0), 0, 2)
+
+;	set variables
+;
+map = op + '.fa.map'
+isave = 'i' + op + '.save'
+vsave = 'v' + op + '.save'
+
+;	shg on I
+;
+shg, map, i, x1=90, x2=100, y2=229, ha2=25, hb1=220, sav=isave, /noplot
+
+;	shg on V
+;
+shg, map, v, x1=120, x2=130, y2=229, ha2=25, hb1=220, sav=vsave, ityp='v', $
+	/noplot
+
+;	plot shg's
+;
+shgplot, tape, isave, vsave
+
+;	exit IDL
+;
+exit

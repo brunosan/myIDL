@@ -1,0 +1,240 @@
+pro get_st2, xold, xlist, results, $
+	olist=olist, fop=fop, lop=lop, $
+	inp=inp, inn=inn, outp=outp, outn=outn, xnew_pre=xnew_pre
+;
+;	procedure:  get_st2
+;
+;	purpose:  calculate new St from old St
+;
+;	author:  rob@ncar, 10/92
+;
+;	see:  get_st.pro, plot_st2.pro
+;
+;------------------------------------------------------------------------------
+;
+;	Check number of parameters.
+;
+if n_params() lt 2 then begin
+	print
+	print, 'usage:  get_st2, xold, xlist [, results]'
+	print
+	print, '	Calculate new St''s from old ones'
+	print, '	(remove old X and apply	new, interpolated/extrapolated'
+	print, '	 X matrices; run after get_st.pro).'
+	print
+	print, '	Arguments'
+	print, '		xold	 - filename of old X matrix'
+	print, '			   (previously applied)'
+	print, '		xlist	 - array of operation numbers of new'
+	print, '			   X matrices to use (monotonic)'
+	print, '		results	 - optional array to contain results'
+	print, '			   for plotting with plot_st2.pro;'
+	print, '			   dimensions will be (2, 2, 5, #ops)'
+	print, '			   where'
+	print, '			     0 = old; 1 = new'
+	print, '			     0 = min; 1 = max'
+	print, '			     0 - 4 = i, q, u, v, az'
+	print, '			     0 - #ops-1 = sequential operation'
+	print
+	print, '	Keywords'
+	print, '		olist	 - array of operation numbers of maps'
+	print, '			   (def=use "fop" and "lop")'
+	print, '		fop,	 - first and last op numbers of maps'
+	print, '		 lop	   (defs=use "olist")'
+	print, '		inp,	 - input file names of neg. and pos.'
+	print, '		 inn	   extrema (defs=''614[+|-]v.st'')
+	print, '		outp,	 - output file names of neg. and pos.'
+	print, '		 outn	   extrema (defs=''614[+|-]v.st2'')
+	print, '		xnew_pre - prefix of new X matrix file names,'
+	print, '			   prepended to the numbers in xlist'
+	print, '			   (def=''X.'')'
+	print
+	print
+	print, '   ex:  get_st2, ''X.old.29'', [29,31], results, $'
+	print, '		 fop=29, lop=32, xnew_pre=''X.new.'''
+	print
+	return
+endif
+;
+;	Set general parameters.
+;
+true = 1
+false = 0
+if n_elements(xnew_pre) eq 0 then xnew_pre = 'X.'
+;
+;	Set operations to process.
+;
+nops = n_elements(olist)
+if nops ne 0 then begin				; from "olist"
+	if (n_elements(fop) ne 0) or $
+	   (n_elements(lop) ne 0) then begin
+		print
+		print, 'Do not set both "olist" and "fop/lop".'
+		print
+		return
+	endif
+endif else begin				; from "fop" and "lop"
+	if (n_elements(fop) eq 0) or $
+	   (n_elements(lop) eq 0) then begin
+		print
+		print, 'Must set either "olist" or "fop -and- lop".'
+		print
+		return
+	endif
+	nops = lop - fop + 1
+	if nops lt 1 then begin
+		print
+		print, '"lop" must be >= "fop".'
+		print
+		return
+	endif
+	olist = [fop]
+	i = fop
+	while (i lt lop) do begin
+		i = i + 1
+		olist = [olist, i]
+	endwhile
+endelse
+nops1 = nops - 1
+;
+;	Set print formats.
+;
+f1 = '(I4, 5F10.3)'
+f2 = '(4F10.5)'
+f3 = '(4F10.1)'
+;
+;	Read in old X matrix.
+;
+x = fltarr(4, 4, /nozero)
+xmatold = x
+print
+print, 'reading old X file ' + xold + ' ...'
+openr, unit, xold, /get_lun
+readf, unit, xmatold
+print, xmatold, format=f2
+free_lun, unit
+xoldt = transpose(xmatold)
+;
+;	Read in new X matrices.
+;
+nxmat = n_elements(xlist)
+if nxmat lt 1 then begin
+	print
+	print, 'No operation numbers in xlist.'
+	print
+	return
+endif
+xmats = fltarr(nxmat, 4, 4)
+for i = 0, nxmat-1 do begin
+	file = xnew_pre + stringit(xlist(i))
+	print
+	print, 'reading new X file ' + file + ' ...'
+	openr, unit, file, /get_lun
+	readf, unit, x
+	print, x, format=f2
+	xmats(i, *, *) = x
+	free_lun, unit
+endfor
+print
+;
+;	Set input St files.
+;
+inn_file = 'st-v.29old'    	; negative extremum for entrance V  (def)
+inp_file = 'st+v.29old'		; positive extremum for entrance V  (def)
+if n_elements(inn) then inn_file = inn
+if n_elements(inp) then inp_file = inp
+openr, inn_unit, inn_file, /get_lun
+openr, inp_unit, inp_file, /get_lun
+;
+;	Set output St files.
+;
+outn_file = 'st-v.new'		; negative extremum for entrance V  (def)
+outp_file = 'st+v.new'		; positive extremum for entrance V  (def)
+if n_elements(outn) then outn_file = outn
+if n_elements(outp) then outp_file = outp
+openw, outn_unit, outn_file, /get_lun
+openw, outp_unit, outp_file, /get_lun
+;
+;	Optionally set up to return values for plotting.
+;
+set_plot = false
+if n_params() eq 2 then set_plot = true
+if set_plot then  results = fltarr(2, 2, 5, nops)
+;
+;	Set other parameters.
+;
+smin = fltarr(4, /nozero)
+smax = fltarr(4, /nozero)
+
+;-----------------------------------------------------
+;	DO THE FOLLOWING FOR EACH MAP
+;-----------------------------------------------------
+
+for iop = 0, nops1 do begin
+;
+;	Get operation number of map.
+	opnum = olist(iop)
+;
+;	Read old St info for the map.
+        smino=smin
+        smaxo=smin
+	readf, inp_unit, iconfig, vttel, vttaz, tblpos, phiaz, format=f1
+	readf, inp_unit, smino, format=f2
+	readf, inn_unit, iconfig, vttel, vttaz, tblpos, phiaz, format=f1
+	readf, inn_unit, smaxo, format=f2
+;
+;	Print old St's.
+	print, '-------------------------------------------------------------'
+	print, 'Operation:  ' + stringit(opnum)
+	print
+	print, 'OLD St''s ...'
+	print, smino, format=f2
+	print, smaxo, format=f2
+;
+;	Interpolate a new X matrix.
+	xnew = interp4x4(xmats, xlist, opnum)
+;
+;	Calculate new St by:
+;
+;		St_new = invert(X_new) * X_old * St_old
+;
+;	Normalize by I.
+;
+;	Optionally save results for plotting.
+;
+	if set_plot then results(0, 0, 0:3, iop) = smino	; save old
+	smin = transpose(invert(xnew)) # (xoldt # smino)	; calc new
+	i = smin(0)	&   smin = smin / i			; normalize
+	if set_plot then results(1, 0, 0:3, iop) = smin		; save new
+;
+	if set_plot then results(0, 1, 0:3, iop) = smaxo	; save old
+	smax = transpose(invert(xnew)) # (xoldt # smaxo)	; calc new
+	i = smax(0)	&   smax = smax / i			; normalize
+	if set_plot then results(1, 1, 0:3, iop) = smax		; save new
+	if set_plot then results(0, 0, 4, iop) = vttaz		; save azimuth
+;
+;	Print new St's.
+	print
+	print, 'NEW St''s =stnew-stold/stold.%..'
+	dsmin=100*(smin-smino)/smino
+	dsmax=100*(smax-smaxo)/smaxo
+ 	print, dsmin, format=f3
+ 	print, dsmax, format=f3
+;
+;	Write new St's to file (to be input to ttt).
+	printf, outp_unit, iconfig, vttel, vttaz, tblpos, phiaz, format=f1
+	printf, outp_unit, smin, format=f2
+	printf, outn_unit, iconfig, vttel, vttaz, tblpos, phiaz, format=f1
+	printf, outn_unit, smax, format=f2
+;
+endfor
+;-----------------------------------------------------
+;
+;	Free units.
+;
+free_lun, inn_unit, inp_unit, outn_unit, outp_unit
+;
+;	Done.
+;
+print
+end

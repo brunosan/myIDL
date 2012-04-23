@@ -1,0 +1,316 @@
+add_margin.pro :add space to left margin and top of a text file.
+ann.pro :	driven annotation routine.
+annarr.pro :	Interactively draw arrows on the screen with mouse. Annotate.
+annbox.pro :	Interactively draw boxes on the screen with mouse. Annotate.
+anncrc.pro :	Interactively draw circles on the screen with mouse. Annotate.
+anncrv.pro : 	Interactively draw curves on the screen with mouse. Annotate.
+annedt.pro :	Edit annotate tool commands in memory or a file.
+annexe.pro :	Execute annotate tool commands from memory or a file.
+annget.pro :	Get annotate tools memory arrays from a file.
+annhlp.pro :	Annotate tools overview.
+annply.pro :	Interactively draw polygons on the screen with mouse. Annotate.
+annput.pro :	Put annotate tools memory arrays into a file.
+annres.pro :	Reset annotate tools memory arrays.
+anntxt.pro :	Interactively position text on the screen with mouse. Annotate.
+apodize.pro :	Gives an weighting array useful for apodizing an image. Cosine taper.
+arcs.pro :	Plot specified arcs on the current plot device.
+array.pro :	Force given argument to be an array.
+ave2d.pro :	Average rows or columns of a 2-d array.
+bar.pro :	Put an interactive color bar on the image display.
+bell.pro :	Ring terminal bell.
+bilinear2.pro : 
+binbound.pro :	For a binary image return an array with boundary points set to 1.
+blend.pro :	Sets up a weighting array to use for blending arrays together.
+box_size.pro :	Used by MOVBOX to change box size using the cursor.
+brk_date_time.pr:Break a date and time string into separate date and time.
+ceil.pro :	Return the ceiling of the argument.
+checker.pro :	Return a checker board pattern array of 0 and 1.
+clt.pro : 	Load a color table. Menu selection.
+cm2norm.pro :	Convert from cm to normalized coordinates.
+coastline.pro :	superpose coastal outlines over a satellite image 
+color_pal.pro :	Displays Color palette in a seperate window
+conttw.pro :	Produce a color filled contour
+convexhull.pro :Return the convex hull of a polygon.
+cosfilt.pro :	Set up a cosine tapered weighting array to use for FFT filtering.
+costap.pro :	Cosine taper weighting from 1 at center to 0 at ends.
+crs.pro : 	Interactive cursor. Lists positions in data or device coordinates.
+ctbld.pro : 	Build a color table.
+ctedt.pro : 	Edit a color table entry.
+ctint.pro : 	Interpolate between two color table entries.
+ctrim.pro : 	Do a circular trim on an array.
+cumulate.pro : 	Array with the cumulative sum of an array.  Integrate an array.
+datacrs.pro : 	Data cursor. Returns X and Y data coordinates.
+date2ymd.pro : 	Date text string to the numbers year, month, day.
+delchr.pro : 	Delete all occurrences of a character from a text string.
+devcrs.pro : 	Data cursor. X, Y dev coord. and image value at that point.
+diskcenter.pro :Find center and radius of a disk in an image.
+disp_img.pro : 	Display an image from Big Bear Observatory 
+dn2date.pro : 	Convert year and day of the year to a date string.
+dot.pro : 	Used by SUN_SHADE for dot product of surface normal and sun vector.
+draw.pro  : 	draw from last point to given point
+drawpoly.pro : 	Draw a polygon using mouse.
+dt_tm_brk.pro : Break a date and time string into separate date and time.
+dt_tm_chk.pro : Check date & time string that both parts exist & are valid.
+dt_tm_dif.pro : Find time interval in seconds between two date/time strings.
+dt_tm_mak.pro : Set up a time and date string from reference JD and offset.
+embed.pro : 	Embed an array in a larger array.
+enter.pro : 	Prompted entries allowing defaults. Help, IDL/DCL commands.
+expand.pro : 	Array magnification  (CONGRIDI like except that this really works!)
+expand2.pro : 	Array magnification (CONGRIDI like except that this really works!)
+explore.pro : 	Image stats in a 16 x 16 box movable with the mouse.
+exrange.pro : 	Return a range array with range expanded by given fraction.
+extracthlp.pro :Extract help text from an IDL routine, full text or one liner.
+f2fi16.pro : 	Convert feet to feet, inches, and fractions to 1/16 inch.
+factor.pro : 	Find  Find prime factors of a given number.
+fft_filter.pro :Do FFT filtering of time series data.
+filebreak.pro : Breaks a file name into components.
+filename.pro : 	File names with system independent symbolic directories.
+findfile2.pro : Find files and sort them.
+firstchar.pro : Position of first non-whitespace char in string.
+fit.pro : 	Curve fit program. Polynomial, exponential, power law.
+fit12.pro : 	For internal use by FIT only.
+fit6.pro : 	For internal use by FIT only.
+fitscomm.pro : 	Return the COMMENT record with given string from FITS header
+fitsdata.pro : 	Return a data set from a FITS file.
+fitsedit.pro : 	Edit FITS file headers.
+fitshdr.pro : 	Get or display FITS image header.
+fitshist.pro : 	Return HISTORY record with given string from FITS header
+fitshline.pro : Put a fitsline (string) into a FITS header.
+fitsminhdr.pro :Make a minimal FITS header for given data set.
+fitsnum.pro : 	Return a specified number from a FITS header
+fitsps.pro : 	Display a FITS data set and its header on a Postscript printer.
+fitsputc.pro : 	Put a character string keyword and value into a FITS header.
+fitsputcom.pro :Put a comment into a FITS header.
+fitsputhis.pro :Put a history into a FITS header.
+fitsputi.pro : 	Put an integer keyword and value into a FITS header.
+fitsputl.pro : 	Put a logical keyword and value into a FITS header.
+fitsputline.pro:Put a fitsline (string) into a FITS header.
+fitsputr.pro : 	Put an real keyword and value into a FITS header.
+fitsq.pro : 	Do quick look at FITS image files.
+fitsread2.pro : Return a data set from a FITS file.
+fitssave.pro : 	Save an array in FITS format.
+fitsstr.pro : 	Return a specified string from a FITS header
+fitstxtc.pro : 	Make a FITS header character string.
+fitstxtcom.pro :Make a FITS header comment.
+fitstxtend.pro : 
+fitstxthis.pro :Make a FITS header history.
+fitstxti.pro : 	Make a FITS header integer numeric string.
+fitstxtl.pro : 	Make a FITS header logical string.
+fitstxtr.pro :  Make a FITS header real numeric string.
+fitswrite2.pro :Write out a FITS data set.
+fixgaps.pro : 	Linearly interpolate across data gaps in an array.
+flat2sph.pro : 	Map a flat map onto a sphere.
+floor.pro : 	Return the floor of the argument.
+fndwrd.pro : 	Find number, locations, and lengths of words in a text string.
+gen_coastline.pro:generate coastal outline map for satellite images
+gen_fit.pro : 	Fitted Y array for given X array from given fit parameters.
+genshape.pro : 	Generate x,y coordinates to draw named shaped.
+getdefdir.pro : Gets default directory from env var or log name DEF_DIR.
+getfile2.pro : 	Read a text file into a string array. 
+getfileln.pro : Get a line from a text file.
+getkey.pro : 	Return a keyboard key.  Interpret escape sequences.
+getphrase.pro : Return the n'th phrase from a text string.
+getrun.pro : 	Return the n'th run of consecutive integers from a given array.
+getsysnams : 
+getview.pro : 	Returns current viewport
+getwindow.pro : Get data window coordinates.
+getwrd.pro : 	Return the n'th word from a text string.
+globe_image.pro:Display an image on a rotating globe
+help_save2.pro :Look at files made by save2 and list what they contain.
+helptrace : 
+hilight.pro : 	select values,display the selected values. 
+hist.pro : 	Compute histogram and corresponding x values.
+histo.pro : 	This procedure displays the histogram of the array tab1.
+hlp.pro : 	Variant of HELP.  Gives array min, max.
+hor.pro : 	Plot a horizontal line on a graph at specified y value.  See ver.
+hori.pro : 	Interactive horizontal line on a plot.
+hsv2rgb.pro : 	Convert Hue, Saturation, and Value to Red, Green, Blue fractions.
+imagesize : 	Compute actual postscript image size given available space 
+imgarrow.pro : 	Draw arrows on image using mouse.
+imgbox.pro : 	Draw a box on image.
+imgdrw.pro : 	Draw lines on image using mouse.
+imgfrm.pro : 	Puts a specified border around an image.
+imgpolrec.pro : Re-map an image from polar form to rectangular.
+imgrecpol.pro : Re-map an image from rectangular form to polar.
+imgtxt.pro : 	Position text on image using mouse.
+imgunder.pro : 	Display image in same area as last plot.
+inrange.pro : 	Good for axis tics.
+interp2.pro : 	Interpolate a 2-d array to another size.
+interval_sec.pro:Find time interval in seconds between two date/time strings.
+isnumber.pro : 	Determine if a text string is a valid number. 
+jd2date.pro : 	Convert a Julian Day number to a date string.
+jd2str.pro : 	Find year, month, day strings from Julian Day number.
+jd2ymd.pro : 	Find year, month, day from julian day number.
+kurf.pro : 	Computes kurtosis inside a moving window.
+kurt.pro : 	Returns the kurtosis of an array (4th moment/2nd moment^2).
+lastindex.pro : Returns the last index for each dimension of the given array.
+latexoff.pro : 	Close the encapsulated Postscript file opened by LATEXON.
+latexon.pro : 	Make an encapsulated postscript file to include in LaTeX documents
+legend.pro : 	make a legend for a plot.
+linepts.pro : 	Gives pixel coordinates of points along a line segment.
+linfill.pro : 	Fill gaps in array data using linear interpolation.
+ll2rb.pro : 	From latitude, longitude compute range, bearing.
+lmst.pro : 	Give local mean sidereal time.
+locate.pro : 	finds indices near a given point
+locmax.pro : 	Find local maxima in an image.
+ls2.pro : 	Scale image between percentiles 1 and 99 
+make_ruler.pro 	Plot linear scales on the laser printer.
+make_scale.pro :
+makedata.pro : 	Make simulated data.  Useful for software development.
+makei.pro : 	Make a long array with given start and end values and step size.
+makelabels.pro :Make a label array.
+makeliner.pro : Generating new idlv2.one file
+maken.pro : 	Make an array of N values, linear between two given limits. 
+makevlt.pro : 	Generate and load a random color table (CT).
+makex.pro : 	Make an array with specified start, end and step values.
+makexy.pro : 	Make 2-d X and Y coordinate arrays, useful for functions of x,y.
+makey.pro : 	Make simulated data.  Useful for software development.
+makez.pro : 	Make simulated 2-d data.  Useful for software development.
+mcompute.pro : 	Compute mandelbrot images
+mean.pro : 	Returns the mean of an array.
+midv.pro : 	Return value midway between array extremes.
+monthdays.pro : Given a year and month returns number of days in that month.
+monthnames.pro :Returns a string array of month names.
+mort.pro : 	Mortgage or loan computation.
+movbox.pro : 	Interactive box on image display.
+movcross.pro : 	Interactive cross-hair on a plot.
+move.pro : 	Graphics move to a point 
+mve.pro : 	print out the max min mean and std deviation of var
+namenum.pro : 	Break a name into a pattern and numbers in the name.
+naxes.pro : 	Find nice axis tics.
+nearest.pro : 	For a target value, return value near a multiple of given step.
+nextitem.pro : 	Return next line from a file, ignore comments & null lines.
+nextnum.pro : 	Return next number using the arrow keys.
+nicenumber.pro :Find a nice number close to the given number.
+normcrs.pro : 	Normalized cursor. Returns X and Y Normalized coordinates.
+nphrases.pro : 	Return the number of phrases in the given text string.
+nruns.pro : 	Return the number of runs of consecutive integers in a given array.
+nthweekday.pro :Julian Day of N'th weekday of month (like 2nd tues).
+num_dec.pro : 	Number of decimal places in given number.
+numfactors.pro :Gives the number of factors of a number.
+numname.pro : 	Generate names or text strings with embedded numbers.
+nwrds.pro : 	Return the number of words in the given text string.
+one2two.pro : 	Convert from 1-d indices to 2-d indices.
+opfit2d.pro : 	Calculate orthonormal polynomial fit for 2-d data.
+orthopoly.pro : Calculates a set of orthonormal polynomials.
+path.pro : 	Examine and modify the IDL path.
+phase.pro : 	Return an array filled in to indicate specified moon phase.
+plane_int.pro : Compute the intersection line of two planes.
+plint.pro : 	Intersection point of a plane and a line.
+plotp.pro : 	Pencode plot routine.  Allows disconnected lines.
+plotwin.pro : 	Gives plot window (area enclosed by axes) in pixels.
+polrec.pro : 	Convert 2-d polar coordinates to rectangular coordinates.
+polrec3d.pro : 	Convert vector(s) from spherical polar to rectangular form.
+poly_fit2.pro : Returns fitted Y values for each given X value.
+polystat.pro : 	Compute polygon statistics
+pos_cm.pro : 	Convert keyword POSITION for PLOT from cm to norm. coords.
+precess2.pro : 	Precess celestial coordinates to a new date.
+prettyprint
+prime.pro : 	Return an array with the specified number of prime numbers.
+print_fact.pro :Print prime factors found by the factor routine.
+ps_sym.pro :  	Print a table showing characters to use for the IDL fonts /zapfdingbats and /symbol.
+psfonts.pro : 	Print a listing showing an example of each IDL postscript font.
+put_color_scale.pro :Draws a numbered color scale
+putfile.pro :   Write a text file from a string array.
+radial_img.pro :Make an image array with a radial brightness distribution.
+radii.pro :	Plot specified radii on the current plot device. 
+radon.pro : 	Compute the Radon Transform using the FFT method.
+raout.pro : 	Write text along an arc in data coordinates.
+rb2ll.pro : 	From range, bearing compute latitude, longitude .
+rd_bbsohdr.pro :Get FITS image header.
+rd_fitshdr.pro :Get FITS image header.
+rdcol.pro : 	read columns of numbers or times from a text file.
+rdfile.pro : 	read lines from a text file.
+readtokey.pro :	Read an open text file until a given key word is found.
+rebin2.pro :	interpolate values between pixels. Uses rebin but trims end effects.
+recpol.pro : 	Convert 2-d rectangular coordinates to polar coordinates.
+recpol3d.pro : 	Convert vector(s) from rectangular to spherical polar form.
+regions.pro : 	Using specified breakpoints map image values into 0,1,2,...
+regionsbar.pro :Plot a color bar for a regions type image.
+repword.pro : 	Replace a word in a text string.
+restore2.pro : 	Retrieve from a file IDL variables saved by save2.
+rgb2hsv.pro : 	Convert Red, Green, Blue fractions to Hue, Saturation, and Value.
+rot_3d.pro : 	Rotate 3-d coordinate systems.
+rotate_xy.pro :	Rotate a set of X,Y points about a given point.
+rotvlt.pro : 	Rotate current vlt or part of it.
+rtics.pro : 	Plot labeled or unlabeled tic marks around a circular arc.
+runlength.pro : Give run lengths for array values.
+save2.pro : 	Save IDL vars in a file. Allows them to be renamed during restore2.
+scalearray.pro :Linearly scale array values to specified range.
+sdev.pro : 	Returns standard deviation of an array.
+sechms.pro : 	Seconds after midnight to h, m, s, numbers and strings.
+secstr.pro : 	Convert a time string to seconds.
+segment.pro : 	Set boundaries of constant value to 0.
+set_isoxy.pro : Set data window with equal x & y scales.
+set_window.pro :Set data window.
+shade_clt.pro : Sets up color table used for sun_shade shaded relief displays.
+show_box.pro : 	Used by MOVBOX to display current box size and position.
+sign.pro : 	Return the mathematical sign of the argument.
+simp.pro : 	Does Simpson numerical integration on an array of y values.
+skew.pro : 	Returns the skew of an array (3rd moment/2nd moment^3/2).
+skewf.pro : 	Computes skew inside a moving window.
+skewint.pro : 	Give the near-intersection point for two skew lines.
+smooth2.pro : 	Do multiple smoothing. Gives near Gaussian smoothing.
+spc.pro : 	Return a string with the specified number of spaces.
+sph_demo.pro : 	Demonstratrionsprogramm fuer die Graphikleistungen von IDL.  
+sphdist.pro : 	Angular distance between points on a sphere.
+sphic.pro : 	Compute intersection points of two circles on a unit sphere.
+sphinit.pro : 	Initialize sphere drawing package.
+sphlat.pro : 	Draw parallels of latitude on a sphere.
+sphlng.pro : 	Draw meridians of longitude on a sphere.
+sphplot.pro : 	Plot a curve in spherical polar coordinates.
+sphrad.pro : 	Draw sphere radius.
+sphtext.pro : 	Write text on a sphere.
+splat.pro : 	Generate points on a splat curve.
+step_ct.pro : 	Discreetizes color scale at given numerical intervals.
+stereo.pro : 	Do red/green stereo graphics. 
+stext_xyp.pro : Return stroke text plot arrays.
+strep.pro : 	Edit a string by position. Precede, Follow, Replace, Delete.
+stress.pro :	String edit by sub-string. Precede, Follow, Delete, Replace.
+stripshift.pro :Shift strips of an image in x or y.
+strlentab.pro : Gives length of a string with tab characters expanded.
+strsec.pro : 	Convert seconds after midnight to a time string.
+strsub.pro : 	Extract a substring by start and end positions.
+strtrm2.pro : 	Trim given character from ends of given string. 
+subnormal.pro : Convert from subnormal coordinates to normalized coordinates.  
+sum2d.pro : 	Sum rows or columns of a 2-d array.
+sun.pro : 	Computes geocentric physical ephemeris of the sun.
+sun_shade.pro : Make a colored shaded relief view of a surface array. See shade_colors.
+superpix.pro : 	compute super pixel average and standard deviation of a scene
+tape_select.pro:Pop-up menu selection of a tape drive.
+time_label.pro :Make a time label array
+timeaxis.pro :  Plot a time axis.
+timer.pro : 	Measure elapsed time between calls.
+tnaxes.pro : 	Find nice time axis tics.
+todev.pro : 	Convert from data or normalized to device coordinates.
+topo.pro : 	Make a monochrome shaded relief view of a surface.
+trace.pro : 	Define a path through an image
+translate.pro : Translate an image to regisiter with a reference image.
+tv_polar.pro :  Display of images defined in polar coordinates
+tvbox2.pro :    Draw or erase a box on the image display.
+tvcirc.pro : 	Draw a circle on the display.
+tvim.pro : 	Display an image with provisions 
+tvpos.pro : 	Gives screen position used by TV, TVSCL.
+tvrdbox.pro : 	Read part of screen image into a byte array.
+tvwrbox.pro : 	Display a byte array on screen using a box for position and size.
+two2one.pro : 	Convert from 2-d indices to 1-d indices.
+unit.pro : 	Returns unit vector along given vector.
+varf.pro : 	Computes variance inside a moving window.
+variance.pro :  Computes the variance of an array of numbers.
+vase.pro : 	Draw rotationally symetric shapes.
+vecfld.pro : 	Plot a 2-d vector field.
+vect_angle.pro :Angular distance between vectors.
+ver.pro : 	Plot a vertical line on a graph at specified x value. See hor.
+veri.pro : 	Interactive vertical line on a plot.
+weekday.proa :  Compute weekday given year, month, day.
+wmenu2.pro : 	Like wmenu but allows non-mouse menus.
+wordarray.pro : Convert a text string or string array into a 1-d array of words.
+wordorder.pro : Re-arrange words in a text string.
+wordpos.pro : 	Gives word number in a reference string for a search word.
+xprint.pro : 	Print text on graphics device. 
+xtics.pro : 	Draw labeled tics for an X type axis.
+xyoutb.pro : 	Bold text version of xyouts.
+ymd2date.pro : 	Convert from year, month, day numbers to date string.
+ymd2jd.pro : 	From Year, Month, and Day compute Julian Day number.
+zoom2.pro : 	Display part of an image from the current expanded window in another
+zplot.pro : 	Plot symbols in various colors.

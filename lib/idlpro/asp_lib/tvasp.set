@@ -1,0 +1,13 @@
+;
+;	File:  tvasp.set
+;
+;	Purpose:  set common for tvasp information
+;
+;	Author:  rob@ncar, 8/93
+;
+;------------------------------------------------------------------------------
+;
+tvasp = {ix_white:0, ix_center:0, ix_yellow:0, ix_red:0, $
+	 ix_green:0, ix_blue:0, ix_gray:0, ix_black:0}
+;
+;------------------------------------------------------------------------------

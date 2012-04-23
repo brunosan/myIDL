@@ -1,0 +1,366 @@
+===============================================================================
+
+	*** This Release of ASP IDL Code ***
+
+- modified aspedit.pro to save original nscan information
+  (only if it's not already in the header)
+
+- modified calibrate.pro to save original nscan information *only if* it's not
+  already in the header; have it *accumulate* input_x1 and input_y1 information
+
+- upgraded bell.pro to permit ringing the bell a specified number of times
+
+- added 'count' argument to get_words.pro, filed bug, and improved usage
+
+- upgraded in_set.pro (returns count, better error checking, faster)
+
+- new routine check_readme.pro to check that ASP IDL README file is up to date;
+  README file made up to date
+
+- modified stringit.pro to keep internal spaces
+
+- added nopause keyword to pause.pro for nicer menuing
+
+===============================================================================
+
+- added 'scale' keyword to plot_4.pro for scaling spectra based on
+  maximum-I; simplified code that scales Q and U together
+
+- new routine aspmovie.pro to manipulate movies; currently separates
+  multiple-map movie files into separate files called <input>.1, <input>.2, ...
+
+- made scan renumbering optional now via new 'fscan0' keyword in aspedit.pro
+
+- added 'raw_nscan' keyword to calibrate.pro for setting op header extension
+  'orig_nscan' field (used by the inversion code), explicitly for version 100
+  short operations (truncated with aspedit)
+
+- modified aspedit.pro to set the op header extension values;
+  added 'exten' keyword for versatile control of this setting
+
+- modified read_op_hdr.pro to not zero the extension part of op headers
+  (was doing so for all but 'Gain[XT]'-type operations)
+
+-------------------------------------------
+
+- modified plot_4.pro to accept a negative 'xscan' implying a thick (3-pixel)
+  line be drawn as opposed to the 1-pixel line that was sometimes not visible
+  in PostScript due to scaling; fixed bug where min/max values were incorrect
+  (were in pixel space rather than in raw data units)
+
+-------- November 4, 1994 -----------------
+
+- new routine rem_clouds.pro to remove clouds
+
+- increased structure field name maximum length in helps.pro, used in h.pro
+
+- added information to helplist.pro listing
+
+-------------------------------------------
+
+- added new routine rev_scans.pro to reverse scan order and numbering
+
+- added rev_scan keyword to calibrate.pro; made calibrate by default reverse
+  scan order on maps recorded after 1 November 1993
+
+- rewrote float_str.pro to round on either side of decimal point (negative
+  as well as positive 'ndigits'), and not have side effect
+
+- rewrote roundit.pro to work for arrays as well as scalars, removed
+  side-effect of modifying the input value, and now can round on either
+  side of the decimal point
+
+- wrote truncit.pro to *truncate* floats to a specified number of digits
+  (rather than *round* to a number of digits as roundit.pro does)
+
+- added 'noaa' and 'qnoaa' keywords to shg.pro for NOAA active region numbers;
+  modified shgplot.pro to use the NOAA numbers saved by shg.pro
+
+-------- October 13, 1994 -----------------
+
+- added laser_sl.pro to create laser profile for inversion code
+
+- added gauss1.pro for RSI's CURVEFIT (used in laser_sl.pro)
+
+-------------------------------------------
+
+- fixed bug in calibrate.pro checking the number of parameters
+
+- fixed bug in flip[x|y].pro (off-by-1 on even dimensioned arrays, thus
+  middle [cols|rows] were not flipped -- actually flipped then flipped back)
+
+-------- September 27, 1994 ---------------
+
+- removed clears from calibrate.pro (and calib_res.pro) since they are
+  no longer used (note argument list shortened!)
+
+- modified plotting in calibrate.pro:
+	now choose between (no plotting | plotting | plotting with pauses)
+	now get plots of final calibrated spectra
+	removed plotting inefficiencies
+
+- removed plotting from wlcross.pro (was a buggy duplicate of what was
+  done correctly in 'calibrate'); removed inefficiencies and formatted
+
+- added 'ans' keyword to pause.pro so can do simple menuing with it
+
+-------- September 22, 1994 ---------------
+
+- modified calibrate.pro so can calculate slope for de-skewing based
+  generically on one hairline or two (i.e., the one hairline may be
+  the top or bottom one)
+
+- added 'cameras' keyword to calibrate (and calib_res and calib_xmat) so
+  can process A only, B only, or both cameras
+
+- fixed bug in calibrate.pro so it correctly plots the difference btw A & B
+
+-------------------------------------------
+
+- modified fix_rec.pro so it can work for any run year
+
+- have aspcal.pro read 4 blank lines of X matrix so works like calibrate.pro
+
+-------- August 31, 1994 ------------------
+
+- collapsed functionality of flat_filtd/genfiltd/get_filtd/buildgn2 to
+  flat_filtd/genfiltd (removed get_filtd and buildgn2)
+
+- made 'nend' an optional keyword in flat_filtd/genfiltd
+
+- added 3rd level of verbosity to flat_filtd.pro, flatavg2.pro, and
+  avgscans_i.pro
+
+- simplified flat_filtd.pro as it can simply pass arguments to flatavg2
+  and genfiltd and let them do error checking and default setting;
+  did similar thing with flatavg2
+
+- modified flatavg2.pro to have 'bads' be optional keyword, rather than
+  a parameter; thus could/did simplify the call in flat_filtd.pro
+  (note that optional parameters are best as keywords !)
+
+- updated comments in various codes concerning gainit vs. calibrate
+
+-------------------------------------------
+
+- fixed extend.pro to handle nst=0
+
+-------- August 26, 1994 ------------------
+
+- added procedure 'pwspec.pro' from Bruce to determine average power spectrum;
+  note there are two methods for apodization (see 'apod' keyword)
+
+- fixed bug in 'apod.pro' so that it generates a quarter period cosine bell,
+  rather than a multi-period one; sped it up by replacing loop with array
+  operations; added 'nomean' keyword and functionality to subtract mean; etc.
+
+- modified 'extend.pro' by replacing loops with array operations for speed;
+  various commenting/cleanup/etc.
+
+- added procedure 'split_spec.pro' to split spectra by wavelength into 2 files
+
+- removed unused 'tree.pro' (was a list of routines rather than a routine)
+
+- modification to 'shsl.pro' by Sku to handle ixst >= 15
+
+-------------------------------------------
+
+- added procedure bell.pro to ring the bell
+
+- modified Makefile for Solaris compilation of gncorrc.so for gncorr.pro
+
+- modified run_shg.pro to use lp rather than lpr (for Solaris)
+
+- added 'mstepsz' keyword to shgplot.pro for when map step size is zero
+
+-------- June 3, 1994 ---------------------
+
+- rewrote aspedit.pro to be more versatile in processing movies;
+  note the argument list has changed
+
+- removed fixrs.pro because fixr.pro now handles scalars as well as arrays
+
+- bomb with error message now if try to skip too far with skip_scan.pro
+
+- new routines put_version, put_nmap, get_nmap to work with op header values
+
+- using p.pro on undefined variables will return to caller now
+
+- modified low level routine read_op_hdr.pro to print "Map Movie Frames"
+  rather than "Filter Steps Stepsize" to better reflect the actual use
+  of the operation header
+
+- small mod's to shg[plot].pro to ensure nfstep is a long integer
+
+-------------------------------------------
+
+- added another example to 'aspedit' usage (for fixing short files)
+
+- mod's to filt.pro to correct indexing errors by Bruce
+
+- simplified fixr.pro to make use of new 'round' function
+
+- modified codes so keyword 'run' accepts 'mar92' or anything-else(def),
+  rather than just 'mar92'(def) or 'jun92'
+  [buildgn2.pro genfiltd.pro get_filtd.pro filt.pro flat_filtd.pro]
+
+- fixed bug in flatav[g].pro:  added newct.com and newct.set
+
+- added comments to shgplot.pro for when can't fit movie onto one page
+
+- updated fix_rec.pro to handle movies
+
+- made nsearch a keyword for calibrate.pro
+
+- updated in_set.pro to return indexes of match
+
+- added set_sub[2].pro to subtract one set from another;
+  added rem_index.pro to remove a value from a vector (written for set_sub)
+
+- added encapsulated keword to shgplot.pro; added note to shg.pro usage
+
+- changed 'fix' to 'floor' in float_str.pro to handle larger numbers
+
+-------- April 6, 1994 --------------------
+
+- modified routines for proper use of /v101 and get_version() since there
+  are versions other than simply 100 and 101 now
+	(asplist.pro aspmeanv.pro aspview.pro avgprof.pro avgprof_st.pro
+	 avgscans_i.pro calibrate.pro flat_filtd.pro flatav.pro flatavg.pro
+	 flatavg2.pro gain_merge_xt3.pro gain_xt.pro gain_xt3.pro gainit.pro
+	 get_st.pro plot_hval.pro plot_meansc.pro readscan.pro shg.pro
+	 shg_darks.pro shgview.pro writscan.pro)
+	(aspcomp.pro aspedit.pro)
+
+- added keyword inheritance for PLOT in all graph*.pro procedures
+  (i.e., all PLOT keywords are now permitted for the graph*.pro routines)
+
+-------- November 29, 1993 ----------------
+
+- added sign.pro function to return the sign of a number
+
+- added 'i_scl -> v_scl' parameters to 'aspview.pro' so can scale the
+  spectra arbitrarily and independently (also added those parameters to
+  'plot_cbars.pro', and added 'srange' parameter to 'newct_tvscl.pro');
+  improved print of raw data range in 'aspview.pro' (i.e., 'xs1 to ys2')
+
+- improved 'plot_4.pro' (much better code & comments; removed profiling);
+  improved 'pprun' (code and comments)
+
+- added 'ca.pro' to close all files
+
+- added 'rca.pro' to do a RETALL and close all files
+
+- added 'path.pro' to print !PATH in readable format
+
+- added 'helplist.pro' to print useful help-related information
+
+- modified 'h.pro' to print structure fields (via new routine 'helps.pro')
+
+-------- October 25, 1993 -----------------
+
+- fixed bug in gain_merge_xt3.pro (automatically adjust bad_a,bad_b arrays
+  now if input fscan:  scans removed in gainit.pro; bad_* used in abmerge.pro)
+
+- removed get_s.pro (unfinished and not to be used)
+- removed asp_scale.pro (no longer used)
+
+- replaced make_help.pro with 'make_help' script (does clean-up editing now;
+  took prints out of mk_asp_help.pro that reminded to do clean-up)
+
+- modified all *.pro routines with examples to use new naming convention
+
+-------------------------------------------
+
+- modified newct_tvscl.pro and plot_cbars.pro to handle zero'ed images
+  (such as the dark of a merged cal)
+
+-------- October 15, 1993 -----------------
+
+- fixed bug in gain_merge_xt3.pro so code works if not de-skewing;
+  added 'keep' and 'time' keywords
+
+- new procedure calibrate.pro to replace gain_merge_xt3.pro
+  (faster and doesn't output temporary files; subsidiary routines
+   calib_res, calib_xmat, calib_gain, calib_xt)
+
+- new general function strsub.pro for substring substitution
+
+- added 'title' keword to aspview.pro
+
+- checked usage of 'ixst' in all routines and added warning comment (i.e.,
+  for raw-wavelength OR flipped-wavelength orientation)
+
+- removed 'ixst' from calcross.pro and calmerge.pro (not used)
+
+- sped up hair, ofstc2, etc. (e.g., redundant initializations of arrays)
+
+- combined hair and onehair into new hair.pro; reversed usage of ixst so
+  hair works on wavelength-flipped data now <-- note that hair.pro was
+  used incorrectly in gain_xt3.pro (data was flipped, but hair assumed NOT)
+
+- modified aspcomp.pro to order spectra being compared (i,ii), (q,qq), etc.
+
+- new function 'timer' to return elapsed time in int array of [hours,mins,secs]
+
+-------------------------------------------
+
+- upgraded run_shg.pro to be more versatile and have better instructions for
+  current usage
+
+- modified routines to use 'nfstep' only for MAPs (i.e., movies):
+  aspedit, shg, aspview, asplist
+
+- rewrote fits_idl.pro for Andy's use
+
+- fixed flatav.pro ('label_iquv' was missing an argument)
+
+	*** Previous Releases ***
+
+-------- August 30, 1993 ------------------
+
+- new aspview.pro and related routines (new labels, colormaps, and menus)
+
+-------------------------------------------
+
+- updated aspedit.pro to handle movies
+
+-------- August 9, 1993 -------------------
+
+- modified plot_4.pro (added /sps option)
+
+- new procedure traceback.pro
+
+- fixed errors in gain_merge_xt3.pro (modify x* and y* params due to
+  clipping and reversal of wavelength direction in gainit.pro)
+
+- modified read_sc_hdr, read_sc_data, writ_op_hdr (added 'on_ioerror')
+
+- modified aspedit (close files, do traceback, & stop on I/O errors)
+
+------- July 22, 1993 ---------------------
+
+- new procedure ps_asp.pro
+
+- new procedure mk_asp_help.pro
+
+- new procedure strip_q.pro
+
+- added "currw" parameter to tvasp
+
+- modifications to azam*.pro routines
+
+-------------------------------------------
+
+- new procedure shgview.pro (and modifications to aspview.pro as needed for it)
+
+- new procedure medfilt.pro
+
+-------------------------------------------
+
+- gain_xt3.pro does a lot more (see it for details)
+
+- shg.pro now handles fscan/lscan for maps within movie operations
+  (UNTESTED !!!)
+
+===============================================================================

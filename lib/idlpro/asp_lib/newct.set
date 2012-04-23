@@ -1,0 +1,14 @@
+;
+;	File:  newct.set
+;
+;	Purpose:  set common for newct information
+;
+;	Author:  rob@ncar, 8/93
+;
+;------------------------------------------------------------------------------
+;
+newct = { ix_white:0, ix_black:0,  ix_yellow:0, ix_red:0, $
+	  ix_green:0, ix_blue:0,   ix_gray:0,   ix_end:0, $
+	  n_colors:0, n_special:7, reverse:0  }
+;
+;------------------------------------------------------------------------------
